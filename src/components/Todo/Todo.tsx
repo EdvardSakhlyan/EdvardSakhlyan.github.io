@@ -1,0 +1,52 @@
+import React, {useRef} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {addTodoAction, ITodo} from "../../store/actions/todoActions";
+import {IState} from "../../store/reducers/todoReducer";
+import {RootState} from "../../store/store";
+import TodoList from "../TodoList/TodoList";
+import '../../styles/Todo.scss'
+
+const Todo : React.FC = () => {
+
+    const ref = useRef<HTMLInputElement>(null)
+
+    const {todos} : IState = useSelector((state: RootState) => state.todoReducer)
+
+    const dispatch = useDispatch()
+
+    const keyPressHandler = (event: React.KeyboardEvent) => {
+        if (event.key === "Enter") {
+            const newTodo: ITodo = {
+                id: Date.now(),
+                title: ref.current!.value
+            }
+            if (todos.find(todo => todo.title === ref.current!.value)) {
+                alert('You have Todo whit same name')
+            }else{
+                dispatch(addTodoAction(newTodo))
+                ref.current!.value = ""
+            }
+
+        }
+    }
+
+    return (
+        <div>
+            <h3>What you need todo</h3>
+            <hr/>
+            <div className="todo-header">
+                <label htmlFor="todo_title">Add todo</label>
+                <input
+                    type="text"
+                    placeholder="Todo Title"
+                    id="todo_title"
+                    ref={ref}
+                    onKeyPress={keyPressHandler}
+                />
+            </div>
+            <TodoList todos={todos}/>
+        </div>
+    );
+};
+
+export default Todo;

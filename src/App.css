@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+main {
+  min-height: 100vh;
+  background: #6f938d;
+  color: #1c1c1c;
+}
+
+.p1r {
+  padding: 1rem;
+}
+
+.m1r {
+  margin: 1rem;
+}
+
+

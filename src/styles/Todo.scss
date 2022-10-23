@@ -1,0 +1,153 @@
+.todo-header {
+  display: flex;
+  align-items: center;
+  background: rgba(176, 176, 176, 0.47);
+  border-radius: 20px;
+  padding: 1rem;
+  label {
+    font-size: 2vw;
+    margin-right: 1rem;
+    font-weight: 600;
+  }
+  input {
+    border: none;
+    width: 80%;
+    height: 30px;
+    outline: none;
+    border-radius: 20px;
+    padding-left: 1rem;
+  }
+}
+
+.todo-list {
+
+  .todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    border-radius: 20px;
+    background: rgba(176, 176, 176, 0.5);
+    margin: 1rem 0;
+    position: relative;
+    .todo-title:first-letter {
+      text-transform: capitalize;
+    }
+    .delete-todo{
+      width: 50px;
+      height: 50px;
+      background-color: #c85f5f;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 60px;
+      svg:hover {
+        transition: all ease 250ms;
+        width: 25px;
+      }
+      svg:active {
+        transition: all ease 250ms;
+        fill: #ff0000;
+        width: 30px;
+      }
+    }
+  }
+}
+
+input[id*="checkbox_id"] {
+  display: none;
+}
+
+.checked-label {
+  position: absolute;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  background-color: #c85f5f;;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s ease transform, 0.2s ease background-color,
+  0.2s ease box-shadow;
+  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checked-label:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.2s ease width, 0.2s ease height;
+}
+
+.checked-label:hover:before {
+  width: 35px;
+  height: 35px;
+}
+
+#tick_mark {
+  width: 30px;
+  height: 30px;
+  transform: rotateZ(-45deg);
+  margin: 0 8px 10px 0;
+}
+
+#tick_mark:before,
+#tick_mark:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  border-radius: 2px;
+  opacity: 0;
+  transition: 0.2s ease transform, 0.2s ease opacity;
+}
+
+#tick_mark:before {
+  left: 0;
+  bottom: 0;
+  width: 10px;
+  height: 20px;
+  transform: translateY(-30px);
+}
+
+#tick_mark:after {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+  transform: translateX(30px);
+}
+
+input[id*="checkbox_id"]:checked + label {
+  background-color: #46cb4b;
+}
+
+input[id*="checkbox_id"]:checked + label:before {
+  width: 0;
+  height: 0;
+}
+
+input[id*="checkbox_id"]:checked ~ .todo-title {
+  text-decoration: line-through;
+  color: #5d5d5d;
+}
+
+input[id*="checkbox_id"]:checked + label #tick_mark:before,
+input[id*="checkbox_id"]:checked + label #tick_mark:after {
+  transform: translate(0);
+  opacity: 1;
+}
+
+
