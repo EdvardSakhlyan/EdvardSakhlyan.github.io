@@ -2,10 +2,14 @@
   text-align: center;
 }
 
-main {
+.wrapper {
   min-height: 100vh;
-  background: #6f938d;
-  color: #1c1c1c;
+  background: linear-gradient(45deg, #14427c, #428cff);
+}
+
+main {
+
+  color: #151515;
 }
 
 .p1r {
@@ -16,4 +20,15 @@ main {
   margin: 1rem;
 }
 
+.mt1r {
+  margin-top: 1rem;
+}
+
+.mtb1r {
+  margin: 1rem 0;
+}
+
+.cl-dw {
+  color: #efefef;
+}
 

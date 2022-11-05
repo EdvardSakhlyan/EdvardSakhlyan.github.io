@@ -1,5 +1,5 @@
 import React from 'react';
-import {deleteTodoAction, ITodo} from "../../store/actions/todoActions";
+import {deleteTodoAction, IPayload, ITodo} from "../../store/actions/todoActions";
 import '../../styles/Todo.scss'
 import {useDispatch} from "react-redux";
 
@@ -12,7 +12,7 @@ const TodoList : React.FC<props> = (props) => {
     const dispatch = useDispatch()
 
     const deleteTodo = (id : number) : void => {
-        const payload : ITodo = {id}
+        const payload = {prop : id} as IPayload
         dispatch(deleteTodoAction(payload))
     }
 
@@ -27,7 +27,7 @@ const TodoList : React.FC<props> = (props) => {
                                 <div id="tick_mark"></div>
                             </label>
                             <h2 className="todo-title">{todo.title}</h2>
-                            <button className="delete-todo" onClick={(event) : void => deleteTodo(todo.id)}>
+                            <button className="delete-todo" onClick={() : void => deleteTodo(todo.id)}>
                                 <svg
                                     fill="#000000"
                                     xmlns="http://www.w3.org/2000/svg"

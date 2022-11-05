@@ -5,6 +5,7 @@ import {IState} from "../../store/reducers/todoReducer";
 import {RootState} from "../../store/store";
 import TodoList from "../TodoList/TodoList";
 import '../../styles/Todo.scss'
+import TodoSort from "../TodoSort/TodoSort";
 
 const Todo : React.FC = () => {
 
@@ -18,7 +19,9 @@ const Todo : React.FC = () => {
         if (event.key === "Enter") {
             const newTodo: ITodo = {
                 id: Date.now(),
-                title: ref.current!.value
+                title: ref.current!.value,
+                created_at : Date.now(),
+                priority: 1
             }
             if (todos.find(todo => todo.title === ref.current!.value)) {
                 alert('You have Todo whit same name')
@@ -31,9 +34,9 @@ const Todo : React.FC = () => {
     }
 
     return (
-        <div>
-            <h3>What you need todo</h3>
-            <hr/>
+        <div className="mtb1r">
+            <h2 className="cl-dw">Control your todo list</h2>
+            <hr className="mtb1r"/>
             <div className="todo-header">
                 <label htmlFor="todo_title">Add todo</label>
                 <input
@@ -44,9 +47,14 @@ const Todo : React.FC = () => {
                     onKeyPress={keyPressHandler}
                 />
             </div>
+            <TodoSort/>
             <TodoList todos={todos}/>
         </div>
     );
 };
 
 export default Todo;
+
+//todo search
+//todo sort
+//todo add priority
